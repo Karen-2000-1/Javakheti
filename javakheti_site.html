@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javakheti — Объявления Джавахети</title>
+<style>
+:root{--blue:#1769e8;--dark:#10233f;--bg:#f4f8fc;--muted:#718096;--yellow:#ffd43b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--dark)}
+header{background:#fff;border-bottom:1px solid #e7edf5;position:sticky;top:0;z-index:10}
+.nav{max-width:1180px;margin:auto;height:70px;display:flex;align-items:center;gap:25px;padding:0 18px}
+.logo{font-size:25px;font-weight:800;color:var(--dark);margin-right:auto}.logo span{color:var(--blue)}.tag{display:block;font-size:11px;color:var(--muted);font-weight:500}
+nav a{color:var(--dark);text-decoration:none;margin:0 9px;font-size:14px}.login{border:0;background:#edf4ff;color:var(--blue);padding:11px 16px;border-radius:10px;font-weight:700}
+.hero{min-height:390px;background:linear-gradient(110deg,rgba(9,39,76,.9),rgba(23,105,232,.42)),url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85") center/cover;display:flex;align-items:center}
+.hero-inner{max-width:1180px;width:100%;margin:auto;padding:55px 18px;color:#fff}.hero h1{font-size:48px;line-height:1.05;margin:0 0 12px}.hero h1 span{color:var(--yellow)}.hero p{font-size:18px;margin:0 0 28px}
+.search{background:#fff;border-radius:16px;padding:9px;display:flex;max-width:1000px;box-shadow:0 12px 35px rgba(0,0,0,.22)}.search input,.search select{border:0;outline:0;padding:15px;font-size:15px;min-width:0;flex:1}.search select{border-left:1px solid #e5eaf1}.search button,.primary{border:0;background:var(--blue);color:#fff;padding:0 28px;border-radius:11px;font-weight:800;font-size:15px}
+.categories{max-width:1180px;margin:0 auto;padding:25px 18px;display:grid;grid-template-columns:repeat(9,1fr);gap:12px}.cat{background:#fff;border-radius:15px;padding:17px 8px;text-align:center;cursor:pointer;border:1px solid #e7edf5;transition:.2s}.cat:hover{transform:translateY(-3px);box-shadow:0 8px 20px #dce6f4}.icon{font-size:27px;margin-bottom:8px}.cat b{font-size:12px}
+.container{max-width:1180px;margin:auto;padding:15px 18px 50px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:25px 0 15px}.section-title h2{margin:0;font-size:25px}.section-title a{color:var(--blue);font-size:14px}
+.listings{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e5ebf3;box-shadow:0 4px 12px rgba(25,50,80,.04)}.photo{height:180px;background:#e7eef8;display:flex;align-items:center;justify-content:center;font-size:50px;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}.card-body{padding:14px}.price{font-size:20px;font-weight:800;margin-bottom:7px}.title{font-size:14px;min-height:38px}.location{color:var(--muted);font-size:12px;margin-top:12px}
+.cities{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.city{background:#fff;border:1px solid #e5ebf3;border-radius:13px;padding:16px;text-align:center;font-weight:700}
+.cta{margin-top:35px;background:linear-gradient(110deg,#0f2e55,#1769e8);color:#fff;border-radius:20px;padding:32px;display:flex;justify-content:space-between;align-items:center}.cta h2{margin:0 0 8px}.cta p{margin:0;color:#dce9ff}.cta button{background:var(--yellow);color:#14233b;border:0;border-radius:11px;padding:15px 24px;font-weight:800}
+footer{background:#0d1d33;color:#cbd6e6;padding:35px 18px}.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:30px}.footer-logo{font-size:22px;font-weight:800;color:#fff}.footer a{color:#cbd6e6;text-decoration:none;margin-right:18px;font-size:13px}
+.modal{display:none;position:fixed;inset:0;background:rgba(5,18,35,.65);z-index:30;align-items:center;justify-content:center;padding:15px}.modal.show{display:flex}.modal-box{background:#fff;border-radius:18px;max-width:520px;width:100%;padding:25px}.modal-box h2{margin-top:0}.form input,.form select,.form textarea{width:100%;padding:13px;margin:7px 0;border:1px solid #d9e1eb;border-radius:10px;font:inherit}.form textarea{min-height:100px}.actions{display:flex;gap:10px;margin-top:10px}.secondary{border:0;background:#eef2f7;border-radius:10px;padding:13px 18px}
+.empty{background:#fff;padding:30px;text-align:center;border-radius:15px;color:var(--muted);grid-column:1/-1}
+@media(max-width:900px){nav{display:none}.categories{grid-template-columns:repeat(5,1fr)}.listings{grid-template-columns:repeat(2,1fr)}.cities{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:38px}}
+@media(max-width:600px){.nav{height:60px}.logo{font-size:21px}.hero{min-height:470px}.hero h1{font-size:34px}.search{display:block}.search input,.search select{width:100%;border:0;border-bottom:1px solid #e5eaf1}.search button{width:100%;height:48px;margin-top:8px}.categories{grid-template-columns:repeat(3,1fr);padding-top:15px}.listings{grid-template-columns:1fr}.cities{grid-template-columns:repeat(2,1fr)}.cta{display:block}.cta button{margin-top:18px;width:100%}.footer-inner{display:block}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">▲ Javakheti <span><small>Объявления Джавахети</small></span></div>
+    <nav>
+      <a href="#home">Главная</a><a href="#categories">Категории</a>
+      <a href="#listings">Объявления</a><a href="#cities">Населённые пункты</a>
+    </nav>
+    <button class="login" onclick="openModal()">＋ Подать объявление</button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <h1>Объявления<br><span>в Джавахети</span></h1>
+    <p>Покупай. Продавай. Находи всё, что нужно — рядом.</p>
+    <div class="search">
+      <input id="searchInput" placeholder="Что вы ищете?">
+      <select id="categoryFilter"><option value="">Все категории</option></select>
+      <select id="cityFilter"><option value="">Весь регион</option></select>
+      <button onclick="renderListings()">🔍 Найти</button>
+    </div>
+  </div>
+</section>
+
+<div class="categories" id="categories"></div>
+
+<main class="container">
+  <div class="section-title"><h2>🔥 Популярные объявления</h2><a href="#listings">Смотреть все →</a></div>
+  <div class="listings" id="listings"></div>
+
+  <div class="section-title" id="cities"><h2>📍 Населённые пункты</h2></div>
+  <div class="cities" id="cityCards"></div>
+
+  <div class="cta">
+    <div><h2>Размести своё объявление</h2><p>Быстро, просто и удобно для жителей Джавахети.</p></div>
+    <button onclick="openModal()">Подать объявление →</button>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo">▲ Javakheti</div><small>Объявления Джавахети</small></div>
+    <div><a href="#home">Главная</a><a href="#categories">Категории</a><a href="#cities">Города</a><a href="#">Правила</a><a href="#">Контакты</a></div>
+    <div>🇬🇪 🇷🇺 🇦🇲</div>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2>Новое объявление</h2>
+    <div class="form">
+      <input id="newTitle" placeholder="Название объявления">
+      <input id="newPrice" type="number" placeholder="Цена, ₾">
+      <select id="newCategory"></select>
+      <select id="newCity"></select>
+      <textarea id="newDescription" placeholder="Описание"></textarea>
+    </div>
+    <div class="actions"><button class="primary" onclick="addListing()">Опубликовать</button><button class="secondary" onclick="closeModal()">Отмена</button></div>
+  </div>
+</div>
+
+<script>
+const categories=[
+ ["🚗","Автомобили"],["🏠","Недвижимость"],["📱","Телефоны и электроника"],
+ ["👕","Одежда и обувь"],["🔧","Услуги"],["🐾","Животные"],
+ ["💼","Работа"],["🛒","Для дома и сада"],["•••","Другое"]
+];
+const cities=["Ахалкалаки","Ниноцминда","Бакуриани","Цалка","Тате́ви","Другие населённые пункты"];
+let listings=JSON.parse(localStorage.getItem("javakhetiListings")||"null")||[
+ {title:"Mercedes-Benz C 200, 2015",price:"16 500",cat:"Автомобили",city:"Ахалкалаки",emoji:"🚘"},
+ {title:"Дом в Ахалкалаки",price:"95 000",cat:"Недвижимость",city:"Ахалкалаки",emoji:"🏡"},
+ {title:"iPhone 13, 128 ГБ",price:"1 200",cat:"Телефоны и электроника",city:"Бакуриани",emoji:"📱"},
+ {title:"Щенки золотистого ретривера",price:"250",cat:"Животные",city:"Ниноцминда",emoji:"🐶"},
+ {title:"Шиномонтаж и балансировка",price:"50",cat:"Услуги",city:"Ахалкалаки",emoji:"🔧"}
+];
+
+const catBox=document.getElementById("categories");
+categories.forEach(c=>catBox.innerHTML+=`<div class="cat" onclick="filterCategory('${c[1]}')"><div class="icon">${c[0]}</div><b>${c[1]}</b></div>`);
+const selects=[document.getElementById("categoryFilter"),document.getElementById("newCategory")];
+selects.forEach(s=>categories.forEach(c=>s.innerHTML+=`<option>${c[1]}</option>`));
+const cityFilter=document.getElementById("cityFilter"),newCity=document.getElementById("newCity");
+cities.forEach(c=>{cityFilter.innerHTML+=`<option>${c}</option>`;newCity.innerHTML+=`<option>${c}</option>`});
+document.getElementById("cityCards").innerHTML=cities.map(c=>`<div class="city" onclick="filterCity('${c}')">📍 ${c}</div>`).join("");
+
+function renderListings(){
+ const q=document.getElementById("searchInput").value.toLowerCase();
+ const cat=document.getElementById("categoryFilter").value;
+ const city=cityFilter.value;
+ const data=listings.filter(x=>(!q||x.title.toLowerCase().includes(q))&&(!cat||x.cat===cat)&&(!city||x.city===city));
+ const box=document.getElementById("listings");
+ box.innerHTML=data.length?data.map(x=>`<article class="card"><div class="photo">${x.emoji||"📦"}</div><div class="card-body"><div class="price">${x.price} ₾</div><div class="title">${x.title}</div><div class="location">📍 ${x.city} · ${x.cat}</div></div></article>`).join(""):`<div class="empty">Объявлений по вашему запросу пока нет.</div>`;
+}
+function filterCategory(c){document.getElementById("categoryFilter").value=c;renderListings();location.hash="listings"}
+function filterCity(c){cityFilter.value=c;renderListings();location.hash="listings"}
+function openModal(){document.getElementById("modal").classList.add("show")}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function addListing(){
+ const title=document.getElementById("newTitle").value.trim();
+ if(!title){alert("Введите название объявления");return}
+ listings.unshift({title,price:document.getElementById("newPrice").value||"Договорная",cat:document.getElementById("newCategory").value,city:document.getElementById("newCity").value,emoji:"📦"});
+ localStorage.setItem("javakhetiListings",JSON.stringify(listings));
+ ["newTitle","newPrice","newDescription"].forEach(id=>document.getElementById(id).value="");
+ closeModal();renderListings();location.hash="listings";
+}
+renderListings();
+</script>
+</body>
+</html>
